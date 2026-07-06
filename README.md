@@ -1,29 +1,17 @@
-<img src="assets/readme-cover.svg" alt="Schema Whisper cover" width="100%" />
-
 # Schema Whisper
 
-Infer practical JSON schemas from messy JSONL examples.
+Infer a practical JSON schema from messy JSONL examples.
 
-![stack](https://img.shields.io/badge/stack-Python-2563eb?style=flat-square) ![python](https://img.shields.io/badge/python-3.11-16a34a?style=flat-square) ![license](https://img.shields.io/badge/license-MIT-dc2626?style=flat-square) ![ci](https://img.shields.io/badge/ci-GitHub%20Actions-7c3aed?style=flat-square)
+![Schema Whisper cover](assets/readme-cover.svg)
 
-| Question | Answer |
-| --- | --- |
-| What is it? | A focused Python utility for schema hygiene. |
-| How does it run? | `schema-whisper` |
-| Why keep it small? | Easier review, easier tests, fewer moving parts. |
+## Why it is useful
 
-## Command
+When an event stream has grown by habit, this gives you a first readable profile: fields, observed types, nulls, and a JSON Schema draft.
 
 ```bash
+git clone https://github.com/mertefekurt/schema-whisper.git
+cd schema-whisper
 python -m pip install -e ".[dev]"
 schema-whisper examples/events.jsonl
-```
-
-## Verify
-
-```bash
-python -m pip install -e ".[dev]"
-ruff check .
-pytest
-python -m schema_whisper --help
+schema-whisper examples/events.jsonl --json-schema
 ```
