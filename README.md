@@ -1,36 +1,29 @@
-<img src="assets/banner.svg" alt="schema-whisper banner">
+<img src="assets/readme-cover.svg" alt="Schema Whisper cover" width="100%" />
 
-# schema-whisper
+# Schema Whisper
 
-`schema-whisper` reads JSONL examples and produces a small contract report: observed field types, optional
-fields, example values, and fields that wobble between incompatible types.
+Infer practical JSON schemas from messy JSONL examples.
 
-It is useful when an LLM, webhook, or event producer claims to return "JSON" but the examples tell a more
-complicated story.
+![stack](https://img.shields.io/badge/stack-Python-2563eb?style=flat-square) ![python](https://img.shields.io/badge/python-3.11-16a34a?style=flat-square) ![license](https://img.shields.io/badge/license-MIT-dc2626?style=flat-square) ![ci](https://img.shields.io/badge/ci-GitHub%20Actions-7c3aed?style=flat-square)
 
-## Try it
+| Question | Answer |
+| --- | --- |
+| What is it? | A focused Python utility for schema hygiene. |
+| How does it run? | `schema-whisper` |
+| Why keep it small? | Easier review, easier tests, fewer moving parts. |
+
+## Command
 
 ```bash
+python -m pip install -e ".[dev]"
 schema-whisper examples/events.jsonl
-schema-whisper examples/events.jsonl --json-schema
 ```
 
-## Output style
+## Verify
 
-The default report is for humans:
-
-```text
-user_id      string       required
-score        number       optional
-tags         array        optional
+```bash
+python -m pip install -e ".[dev]"
+ruff check .
+pytest
+python -m schema_whisper --help
 ```
-
-The JSON Schema mode is intentionally conservative. If a field appears as both number and string, it keeps
-both types visible instead of hiding the instability.
-
-## Project layout
-
-`core.py` handles inference, `cli.py` handles rendering, and tests cover scalar types, optionality,
-mixed-type detection, CLI output, and JSON Schema generation.
-
-MIT license.
